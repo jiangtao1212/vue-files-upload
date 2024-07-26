@@ -32,7 +32,7 @@ const emits = defineEmits(["upload"]);
 
 // 定义props类型
 type Props = {
-  fileTypes?: Array<string>, // 允许上传的文件类型
+  fileTypes?: Array<string>, // 允许上传的文件类型 //TODO: 文件类型校验，点击上传文件夹按钮时深层文件类型校验，拖动文件和文件夹时所有文件类型校验
   maxFileSize?: number , // 允许上传的文件最大尺寸，单位：字节
   showFileUploadBtn?: boolean, // 是否显示上传文件按钮
   showDirectoryUploadBtn?: boolean, // 是否显示上传文件夹按钮
