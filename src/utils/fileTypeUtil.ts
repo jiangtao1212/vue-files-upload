@@ -2,7 +2,7 @@
  * @Author: jiangtao 1106950092@qq.com
  * @Date: 2024-07-26 09:51:44
  * @LastEditors: jiangtao 1106950092@qq.com
- * @LastEditTime: 2024-07-26 15:55:00
+ * @LastEditTime: 2024-07-29 13:25:27
  * @FilePath: \echarts-legend-drage\src\utils\fileType.ts
  * @Description: 文件类型工具
  */
@@ -56,4 +56,22 @@ const fileSizeToUnit = (size: number): string => {
   }
 }
 
-export default { fileTypesInputAcceptStr, fileTypesSeparatorStr, fileSizeToUnit }
+/**
+ * @author jiangtao
+ * @date 2024-07-26
+ * @description 获取文件扩展名
+ * @param fileName 文件名
+ * @returns  例如：`jpg`
+ */
+const getFileExtension = (fileName: string): string => {
+  const match = fileName.match(/\.(\w+)$/);
+  // console.log(match);
+  if (match) {
+    return match[1];
+  }
+  return '';
+}
+
+
+
+export default { fileTypesInputAcceptStr, fileTypesSeparatorStr, fileSizeToUnit, getFileExtension }

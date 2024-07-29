@@ -24,15 +24,15 @@
 
 <script setup lang="ts">
 import { Upload } from "@element-plus/icons-vue";
-import { computed, onMounted, onUnmounted, reactive } from "vue";
-import { ElMessage } from 'element-plus'
-import { fileTypeEntry } from "@/utils/index";
+import { onMounted, onUnmounted, reactive } from "vue";
+import { ElMessage } from 'element-plus';
+import { fileTypeUtil } from "@/utils/index";
 
 const emits = defineEmits(["upload"]);
 
 // 定义props类型
 type Props = {
-  fileTypes?: Array<string>, // 允许上传的文件类型 //TODO: 文件类型校验，点击上传文件夹按钮时深层文件类型校验，拖动文件和文件夹时所有文件类型校验
+  fileTypes?: Array<string>, // 允许上传的文件类型 --- 文件类型校验，点击上传文件夹按钮时深层文件类型校验，拖动文件和文件夹时所有文件类型校验
   maxFileSize?: number , // 允许上传的文件最大尺寸，单位：字节
   showFileUploadBtn?: boolean, // 是否显示上传文件按钮
   showDirectoryUploadBtn?: boolean, // 是否显示上传文件夹按钮
@@ -46,19 +46,19 @@ const props = withDefaults(defineProps<Props>(), {
 
 // 数据相关
 const dataAbout = reactive({
-  accept: fileTypeEntry.fileTypesInputAcceptStr(props.fileTypes),
-  fileTypesTitle: fileTypeEntry.fileTypesSeparatorStr(props.fileTypes, ' | '),
-  maxFileSize: fileTypeEntry.fileSizeToUnit(props.maxFileSize), // 单位：MB
+  accept: fileTypeUtil.fileTypesInputAcceptStr(props.fileTypes),
+  fileTypesTitle: fileTypeUtil.fileTypesSeparatorStr(props.fileTypes, ' | '),
+  maxFileSize: fileTypeUtil.fileSizeToUnit(props.maxFileSize), // 单位：MB
 });
 
 let dragContainer: HTMLDivElement | null = null; // 拖拽区域
 let uploadFilesBtn: Element | null = null; // 上传文件按钮
 let uploadDirectoriesBtn: Element | null = null; // 上传文件夹按钮
 
-// 过滤文件大小超过限制的文件
-const filterOverMaxFileSize = (files: File[]) => {
-  const res = files.filter(file => file.size <= props.maxFileSize);
-  const message = `上传了${files.length}个文件，过滤后符合文件大小要求的为${res.length}个文件`
+// 过滤文件 ----- 1. 文件大小 2. 文件类型
+const filterFileSizeAndFileType = (files: File[]) => {
+  const res = files.filter(file => file.size <= props.maxFileSize && props.fileTypes.includes(fileTypeUtil.getFileExtension(file.name)));
+  const message = `上传了${files.length}个文件，过滤后符合要求的为${res.length}个文件`;
   ElMessage.success(message);
   return res;
 }
@@ -67,8 +67,8 @@ const filterOverMaxFileSize = (files: File[]) => {
 const getFilesOrDirectories = (e: Event) => {
   let files = (e.target as HTMLInputElement).files;
   if (!files || files?.length === 0) return;
-  const filesData: File[] = filterOverMaxFileSize(Array.from(files));
-  console.log(filesData);
+  const filesData: File[] = filterFileSizeAndFileType(Array.from(files));
+  // console.log(filesData);
 }
 
 // 异步获取文件夹中的所有文件----迭代器
@@ -128,7 +128,7 @@ const getDragfilesAndDirectories = async (e: DragEvent) => {
     }
   }
   await Promise.all(promises);
-  const filesData = filterOverMaxFileSize(Array.from(filesArray));
+  const filesData = filterFileSizeAndFileType(Array.from(filesArray));
   console.log("All files processed:", filesData);
   emits('upload', filesData);
 }
