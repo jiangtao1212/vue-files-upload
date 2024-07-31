@@ -1,24 +1,42 @@
 {
-  "name": "vue-echarts-drag",
-  "version": "0.0.0",
-  "private": true,
+  "name": "@baosight/vue-files-upload",
+  "version": "0.0.4",
+  "author": "jiangtao",
+  "license": "MIT",
+  "private": false,
   "type": "module",
+  "files": ["dist", "package.json", "README.md"],
+  "main": "./dist/vue-files-upload.umd.cjs",
+  "module": "./dist/vue-files-upload.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "import": "./dist/vue-files-upload.js",
+      "require": "./dist/vue-files-upload.umd.cjs",
+      "types": "./dist/index.d.ts"
+    },
+    "./dist/style.css": "./dist/style.css"
+  },
+  "publishConfig": {
+    "registry": "http://10.25.101.14:10032/repository/pc-npm/"
+  },
   "scripts": {
     "dev": "vite",
     "build": "run-p type-check \"build-only {@}\" --",
     "preview": "vite preview",
     "build-only": "vite build",
     "type-check": "vue-tsc --build --force",
-    "lint": "eslint . --ext .vue,.js,.jsx,.cjs,.mjs,.ts,.tsx,.cts,.mts --fix --ignore-path .gitignore"
+    "lint": "eslint . --ext .vue,.js,.jsx,.cjs,.mjs,.ts,.tsx,.cts,.mts --fix --ignore-path .gitignore",
+    "deploy": "vite build && npm publish",
+    "deploy-beta": "vite build && npm publish --tag beta"
   },
   "dependencies": {
+    "@baosight/vue-files-upload": "^0.0.4",
     "@element-plus/icons-vue": "^2.3.1",
     "@vueuse/core": "^10.10.0",
-    "echarts": "^5.5.0",
     "element-plus": "^2.7.4",
     "pinia": "^2.1.7",
     "vue": "^3.4.21",
-    "vue-draggable-plus": "^0.5.0",
     "vue-router": "^4.3.0"
   },
   "devDependencies": {
@@ -35,6 +53,7 @@
     "typescript": "~5.4.0",
     "unocss": "^0.60.4",
     "vite": "^5.2.8",
+    "vite-plugin-dts": "^3.9.1",
     "vue-tsc": "^2.0.11"
   }
 }
