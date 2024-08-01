@@ -1,7 +1,7 @@
 lockfileVersion: 5.4
 
 specifiers:
-  '@baosight/vue-files-upload': ^0.0.3-beta.45
+  '@baosight/vue-files-upload': ^0.0.5
   '@element-plus/icons-vue': ^2.3.1
   '@rushstack/eslint-patch': ^1.8.0
   '@tsconfig/node20': ^20.1.4
@@ -25,7 +25,7 @@ specifiers:
   vue-tsc: ^2.0.11
 
 dependencies:
-  '@baosight/vue-files-upload': 0.0.3-beta.45_typescript@5.4.5
+  '@baosight/vue-files-upload': 0.0.5_typescript@5.4.5
   '@element-plus/icons-vue': 2.3.1_vue@3.4.27
   '@vueuse/core': 10.10.0_vue@3.4.27
   element-plus: 2.7.4_vue@3.4.27
@@ -404,8 +404,8 @@ packages:
       '@babel/helper-validator-identifier': 7.24.7
       to-fast-properties: 2.0.0
 
-  /@baosight/vue-files-upload/0.0.3-beta.45_typescript@5.4.5:
-    resolution: {integrity: sha512-k8QDVj20DuSVXI9oTfl/G6MrTP5zvhBhujg5vDkfc3OMMZcR+XoZs9HxA0U7P0Y1bYM46ySpFnG3diKgLxF0qA==}
+  /@baosight/vue-files-upload/0.0.5_typescript@5.4.5:
+    resolution: {integrity: sha512-SIX2qoeQ0ZY0QmpnbjEuwuLfyJR25Jpw2+JP9H1nMe94NnUQD5bT86WtdyrZXCu9CiSD5+Vqj2rlXrSTs8rGkg==}
     dependencies:
       '@element-plus/icons-vue': 2.3.1_vue@3.4.27
       '@vueuse/core': 10.10.0_vue@3.4.27

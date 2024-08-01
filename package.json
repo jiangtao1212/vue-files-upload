@@ -1,6 +1,6 @@
 {
   "name": "@baosight/vue-files-upload",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "author": "jiangtao",
   "license": "MIT",
   "private": false,
@@ -31,7 +31,7 @@
     "deploy-beta": "vite build && npm publish --tag beta"
   },
   "dependencies": {
-    "@baosight/vue-files-upload": "^0.0.4",
+    "@baosight/vue-files-upload": "^0.0.5",
     "@element-plus/icons-vue": "^2.3.1",
     "@vueuse/core": "^10.10.0",
     "element-plus": "^2.7.4",

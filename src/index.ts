@@ -4,7 +4,7 @@ import 'uno.css'
 import VueFilesUpload from '@/components/upload/index.vue';
 
 /**
- * 按需引入组件
+ * 1.按需引入组件
  * ...
  * import { VueFilesUpload } from '@baosight/vue-files-upload';
  * import "@baosight/vue-files-upload/dist/style.css";
@@ -12,6 +12,7 @@ import VueFilesUpload from '@/components/upload/index.vue';
 export { VueFilesUpload };
 
 /**
+ * 2.全局注册组件
  * 这里默认导出一个vue支持的install方法
  * 可以在main.ts中使用以下方式全局导入组件
  *
@@ -29,13 +30,11 @@ export default {
   }
 }
 
-// 声明全局变量
-declare module '@/utils/index';
 // 声明全局组件
-declare module "vue" {
-  export interface GlobalComponents {
-    VueFilesUpload: typeof VueFilesUpload
-  }
-}
+// declare module "vue" {
+//   export interface GlobalComponents {
+//     VueFilesUpload: typeof VueFilesUpload
+//   }
+// }
 
 
