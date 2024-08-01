@@ -1,4 +1,4 @@
-import fileTypePlugin from './fileTypePlugin';
+import FileTypePlugin from './fileTypePlugin';
 
 
-export { fileTypePlugin };
+export { FileTypePlugin };

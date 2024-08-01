@@ -1,4 +1,4 @@
-import fileTypeUtil from './fileTypeUtil';
+import FileUtil from './fileUtil';
 
 
-export { fileTypeUtil }
+export { FileUtil }

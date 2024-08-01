@@ -26,7 +26,7 @@
 import { Upload } from "@element-plus/icons-vue";
 import { onMounted, onUnmounted, reactive } from "vue";
 import { ElMessage } from 'element-plus';
-import { fileTypeUtil } from "@/utils/index";
+import { FileUtil } from "@/utils/index";
 
 const emits = defineEmits(["upload"]);
 
@@ -46,9 +46,9 @@ const props = withDefaults(defineProps<Props>(), {
 
 // 数据相关
 const dataAbout = reactive({
-  accept: fileTypeUtil.fileTypesInputAcceptStr(props.fileTypes),
-  fileTypesTitle: fileTypeUtil.fileTypesSeparatorStr(props.fileTypes, ' | '),
-  maxFileSize: fileTypeUtil.fileSizeToUnit(props.maxFileSize), // 单位：MB
+  accept: FileUtil.fileTypesInputAcceptStr(props.fileTypes),
+  fileTypesTitle: FileUtil.fileTypesSeparatorStr(props.fileTypes, ' | '),
+  maxFileSize: FileUtil.fileSizeToUnit(props.maxFileSize), // 单位：MB
 });
 
 let dragContainer: HTMLDivElement | null = null; // 拖拽区域
@@ -57,7 +57,7 @@ let uploadDirectoriesBtn: Element | null = null; // 上传文件夹按钮
 
 // 过滤文件 ----- 1. 文件大小 2. 文件类型
 const filterFileSizeAndFileType = (files: File[]) => {
-  const res = files.filter(file => file.size <= props.maxFileSize && props.fileTypes.includes(fileTypeUtil.getFileExtension(file.name)));
+  const res = files.filter(file => file.size <= props.maxFileSize && props.fileTypes.includes(FileUtil.getFileExtension(file.name)));
   const message = `上传了${files.length}个文件，过滤后符合要求的为${res.length}个文件`;
   ElMessage.success(message);
   return res;
